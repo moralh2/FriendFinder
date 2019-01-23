@@ -13,6 +13,7 @@ app.use(express.json());
 
 // Router
 require("./app/routing/htmlRoutes")(app);
+require("./app/routing/apiRoutes")(app);
 
 // Start server and listen on PORT
 app.listen(PORT, function(){
