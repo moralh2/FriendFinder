@@ -49,3 +49,18 @@ function compareScores(newFriendScores, existingFriendScores) {
     return scoreDiff;
 }
 
+results.sort(function(a,b){
+    if(a.score == b.score)
+        return 0;
+    if(a.score < b.score)
+        return -1;
+    if(a.score > b.score)
+        return 1;
+});
+
+
+[ { name: 'Pepito', score: 24 },
+{ name: 'Pepitwwwo', score: 11 },
+{ name: 'Pepitrrrro', score: 21 },
+  { name: 'Pepita', score: 13 },
+  { name: 'Pepitote', score: 38 } ]
