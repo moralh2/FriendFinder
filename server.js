@@ -12,8 +12,9 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 // Router
-require("./app/routing/htmlRoutes")(app);
+// The order matters bc of the catch-all
 require("./app/routing/apiRoutes")(app);
+require("./app/routing/htmlRoutes")(app);
 
 // Start server and listen on PORT
 app.listen(PORT, function(){
