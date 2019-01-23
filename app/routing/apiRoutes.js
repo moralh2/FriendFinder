@@ -10,26 +10,19 @@ module.exports = function (app) {
 
     //Route to post Friends Data
     app.post("/api/friends", function (request, response) {
-
-
-
-
-
-
-
-
+        // Calculate match
+        var matchedFriend = calculateMatch(request.body);
+        // Push new user
         friendData.push(request.body);
-
-
-
-
-        response.json(friendData);
+        // Return matching user
+        response.json(matchedFriend);
     });
 
 }
 
+// Calls compareScore for each user, then sorts
 function calculateMatch(newFriend) {
-    var matches = []
+    var matches = [];
     for (i = 0; i < friendData.length; i++) {
         matches.push(
             {
@@ -38,6 +31,8 @@ function calculateMatch(newFriend) {
             }
         );
     }
+
+    // Look at score attribute and sort, asc
     matches.sort(function(a,b){
         if(a.score == b.score)
             return 0;
@@ -46,22 +41,16 @@ function calculateMatch(newFriend) {
         if(a.score > b.score)
             return 1;
     });
-    return matches;
+
+    // Return the closest match
+    return matches[0];
 }
 
+// Gets the difference between scores, keeps a running sum
 function compareScores(newFriendScores, existingFriendScores) {
     var scoreDiff = 0;
     newFriendScores.map(function (currentValue, index) {
-        scoreDiff += Math.abs(currentValue - existingFriendScores[index])
-    })
+        scoreDiff += Math.abs(currentValue - existingFriendScores[index]);
+    });
     return scoreDiff;
 }
-
-results.sort(function(a,b){
-    if(a.score == b.score)
-        return 0;
-    if(a.score < b.score)
-        return -1;
-    if(a.score > b.score)
-        return 1;
-});

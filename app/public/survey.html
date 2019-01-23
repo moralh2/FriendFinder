@@ -56,7 +56,6 @@
 
                 <!-- Questions loaded here from loadQuestions() -->
                 <div id="survey-questions">
-                
                 </div>
 
                 <a id="form-submit" class="waves-effect waves-light btn">Submit</a>
@@ -89,10 +88,9 @@
 
             // Will save selected options
             var optionsArray = []
-
             for (var i = 1; i <= questions.length; i++) {
+
                 // Only saves first character -- 1-5, or 'C' if not selected
-                $("#question-1 input.select-dropdown").val()[0]
                 questionValue = $("#question-" + i + " input.select-dropdown").val()[0];
                 optionsArray.push(questionValue);
             }
@@ -133,12 +131,10 @@
                     scores: scoresArray
                 };
 
-                console.log(newFriend);
-
                 // Post new user
                 $.post("/api/friends", newFriend, function (data) {
                     if (data) {
-                        alert("Yay! Your form was submitted!");
+                        alert(JSON.stringify(data));
                     }
 
                     // Clear form
@@ -155,7 +151,7 @@
             formDiv.empty();
             for (var i in questions) {
 
-                // The math below concatenates w/o the '+'
+                // The numId math below concatenates w/o the '+'
                 var numId = +1 + +i;
                 var runningId = "question-" + numId;
                 var questionDiv = $("<div>").addClass("input-field col s12").attr("id", runningId);
