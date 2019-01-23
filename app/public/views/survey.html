@@ -14,6 +14,9 @@
 
     <!--CDN for JQuery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="../../assets/javascript/main.js"></script>
+
 </head>
 
 <body>
@@ -34,8 +37,9 @@
         </div>
 
         <div class="row">
-            <form class="col s12">
-                <div class="input-field col s12">
+            <form id="survey-form" class="col s12">
+
+                <div id="question-1" class="input-field col s12">
                     <select>
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1">Option 1</option>
@@ -46,6 +50,7 @@
                     </select>
                     <label>Question 1</label>
                 </div>
+                
             </form>
         </div>
 
@@ -55,11 +60,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <!-- Init JS Components (Select) from Materialize -->
-    <script>
+    <!-- <script>
         $(document).ready(function () {
             $('select').formSelect();
         });
-    </script>
+    </script> -->
 </body>
 
 </html>
