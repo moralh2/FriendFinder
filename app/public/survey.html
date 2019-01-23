@@ -146,7 +146,7 @@
                     scoresArray.push(parseInt(optionsArray[j]));
                 }
 
-                // create obj for new friend
+                // Create obj for new friend
                 var newFriend = {
                     name: nameSubmitted,
                     photo: photoLinkSubmitted,
@@ -165,22 +165,17 @@
                     $("#name").val("");
                     $("#photo").val("");
                     loadQuestions();
-                    // $("select").val("");
-                    // $("select").formSelect();
                 });
             }
         });
 
-
-
+        // Use jQuery to load all the questions on the page
         function loadQuestions() {
-
             var formDiv = $("#survey-questions");
-
             formDiv.empty();
-
             for (var i in questions) {
                 console.log(i)
+                // The math below concatenates w/o the '+'
                 var numId = +1 + +i;
                 var runningId = "question-" + numId;
                 var questionDiv = $("<div>").addClass("input-field col s12").attr("id", runningId);
@@ -202,6 +197,7 @@
                 formDiv.append(questionDiv);
             }
 
+            // Initialize the Materialize selects
             $("select").formSelect();
         }
 
