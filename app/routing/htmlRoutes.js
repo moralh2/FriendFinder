@@ -1,8 +1,7 @@
 // Node Path Package
 var path = require("path");
 
-// Export routes to server
-// Include server in fnc
+// Export routes to server (need server reference in function)
 module.exports = function(app) {
 
     //Route for Survey
@@ -14,7 +13,4 @@ module.exports = function(app) {
     app.get("*", function(request, response) {
         response.sendFile(path.join(__dirname, "../public/home.html"))
     });
-
-
-
 }
