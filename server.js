@@ -1,5 +1,6 @@
-// Node Express Package
+// Node Express Packages
 var express = require("express");
+var path = require("path");
 
 // Create Node server
 var app = express();
@@ -12,8 +13,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
 // Test server
-app.get("/", function(req, res) {
-    res.send("Hola");
+app.get("/", function(request, response) {
+    response.sendFile(path.join(__dirname, "./app/public/home.html"))
 });
 
 // Start server and listen on PORT
