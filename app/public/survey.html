@@ -47,42 +47,9 @@
                     <label for="photo">Photo URL</label>
                 </div>
 
+                <!-- Questions loaded here from loadQuestions() -->
                 <div id="survey-questions">
-                    <div id="question-1" class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                            <option value="4">Option 4</option>
-                            <option value="5">Option 5</option>
-                        </select>
-                        <label>Question 1</label>
-                    </div>
-
-                    <div id="question-2" class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                            <option value="4">Option 4</option>
-                            <option value="5">Option 5</option>
-                        </select>
-                        <label>Question 2</label>
-                    </div>
-
-                    <div id="question-3" class="input-field col s12">
-                        <select>
-                            <option value="" disabled selected>Choose your option</option>
-                            <option value="1">Option 1</option>
-                            <option value="2">Option 2</option>
-                            <option value="3">Option 3</option>
-                            <option value="4">Option 4</option>
-                            <option value="5">Option 5</option>
-                        </select>
-                        <label>Question 3</label>
-                    </div>
+                
                 </div>
 
                 <a id="form-submit" class="waves-effect waves-light btn">Submit</a>
@@ -98,7 +65,13 @@
     <!-- Init JS Components (Select) from Materialize, listener for form post  -->
     <script type="text/javascript">
 
-        var questions = ["I like coffee", "I like sushi", "I hate spiders"];
+        var questions = [
+            "I need coffee in my life", "I am definitely a morning person", 
+            "I really like scary movies", "I prefer beer to wine",
+            "I like dogs over cats", "I enjoy to go hiking",
+            "I watch too much Netflix", "I can't wait for the final season of Game Thrones",
+            "I like going to concerts", "I go out to the movies a lot"
+        ];
 
         $(document).ready(function () {
             loadQuestions()
@@ -139,8 +112,8 @@
 
             // If data is valid, convert answers to integers, and post all data
             else {
-
                 var scoresArray = []
+
                 // Parse string integers
                 for (var j in optionsArray) {
                     scoresArray.push(parseInt(optionsArray[j]));
@@ -174,7 +147,7 @@
             var formDiv = $("#survey-questions");
             formDiv.empty();
             for (var i in questions) {
-                console.log(i)
+
                 // The math below concatenates w/o the '+'
                 var numId = +1 + +i;
                 var runningId = "question-" + numId;
