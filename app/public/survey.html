@@ -91,7 +91,7 @@
     <!-- Init JS Components (Select) from Materialize, listener for form post  -->
     <script type="text/javascript">
         $(document).ready(function () {
-            $('select').formSelect();
+            $("select").formSelect();
         });
 
         $("#form-submit").on("click", function (event) {
@@ -103,7 +103,6 @@
                 questionValue = $("#question-" + i + " option:selected").val();
                 scoresArray.push(questionValue)
             }
-            console.log()
 
             var newFriend = {
                 name: $("#name").val().trim(),
@@ -115,23 +114,15 @@
 
             $.post("/api/friends", newFriend, function (data) {
                 if (data) {
-                    alert("Yay! You are officially booked!");
+                    alert("Yay! Your form was submitted!");
                 }
 
                 $("#name").val("");
-                $("question-1").val("");
-                $("question-2").val("");
-                $("question-3").val("");
-
+                $("select").val("");
+                $("select").formSelect();
             });
 
         });
-
-
-
-
-
-
     </script>
 
 </body>
