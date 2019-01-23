@@ -13,5 +13,5 @@ module.exports = function (app) {
         friendData.push(request.body);
         response.json(friendData);
     });
-
+    
 }

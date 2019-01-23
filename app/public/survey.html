@@ -37,6 +37,11 @@
         <div class="row">
             <form id="survey-form" class="col s12">
 
+                <div class="input-field col s12">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Name</label>
+                </div>
+
                 <div id="question-1" class="input-field col s12">
                     <select>
                         <option value="" disabled selected>Choose your option</option>
@@ -73,6 +78,8 @@
                     <label>Question 3</label>
                 </div>
 
+                <a id="form-submit" class="waves-effect waves-light btn">Submit</a>
+
             </form>
         </div>
 
@@ -81,13 +88,52 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    <!-- Init JS Components (Select) from Materialize -->
-    <script>
+    <!-- Init JS Components (Select) from Materialize, listener for form post  -->
+    <script type="text/javascript">
         $(document).ready(function () {
             $('select').formSelect();
         });
+
+        $("#form-submit").on("click", function (event) {
+            var questionCount = 3
+            event.preventDefault();
+            var scoresArray = []
+
+            for (i = 1; i <= questionCount; i++) {
+                questionValue = $("#question-" + i + " option:selected").val();
+                scoresArray.push(questionValue)
+            }
+            console.log()
+
+            var newFriend = {
+                name: $("#name").val().trim(),
+                photo: "some-url",
+                scores: scoresArray
+            };
+
+            console.log(newFriend);
+
+            $.post("/api/friends", newFriend, function (data) {
+                if (data) {
+                    alert("Yay! You are officially booked!");
+                }
+
+                $("#name").val("");
+                $("question-1").val("");
+                $("question-2").val("");
+                $("question-3").val("");
+
+            });
+
+        });
+
+
+
+
+
+
     </script>
-    
+
 </body>
 
 </html>
