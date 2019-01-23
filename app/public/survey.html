@@ -19,6 +19,7 @@
 <body>
 
     <div class="container">
+
         <div class="row">
             <div class="col s12">
                 <div class="card deep-purple accent-33">
@@ -34,8 +35,9 @@
         </div>
 
         <div class="row">
-            <form class="col s12">
-                <div class="input-field col s12">
+            <form id="survey-form" class="col s12">
+
+                <div id="question-1" class="input-field col s12">
                     <select>
                         <option value="" disabled selected>Choose your option</option>
                         <option value="1">Option 1</option>
@@ -46,6 +48,31 @@
                     </select>
                     <label>Question 1</label>
                 </div>
+
+                <div id="question-2" class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                        <option value="5">Option 5</option>
+                    </select>
+                    <label>Question 2</label>
+                </div>
+
+                <div id="question-3" class="input-field col s12">
+                    <select>
+                        <option value="" disabled selected>Choose your option</option>
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                        <option value="5">Option 5</option>
+                    </select>
+                    <label>Question 3</label>
+                </div>
+
             </form>
         </div>
 
@@ -60,6 +87,7 @@
             $('select').formSelect();
         });
     </script>
+    
 </body>
 
 </html>
