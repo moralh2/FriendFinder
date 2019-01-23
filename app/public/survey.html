@@ -133,11 +133,13 @@
             else {
                 console.log(newFriend);
 
+                // Post user
                 $.post("/api/friends", newFriend, function (data) {
                     if (data) {
                         alert("Yay! Your form was submitted!");
                     }
-
+                    
+                    // Clear form
                     $("#name").val("");
                     $("#photo").val("");
                     $("select").val("");
