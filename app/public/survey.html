@@ -47,40 +47,42 @@
                     <label for="photo">Photo URL</label>
                 </div>
 
-                <div id="question-1" class="input-field col s12">
-                    <select>
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                        <option value="5">Option 5</option>
-                    </select>
-                    <label>Question 1</label>
-                </div>
+                <div id="survey-questions">
+                    <div id="question-1" class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                        </select>
+                        <label>Question 1</label>
+                    </div>
 
-                <div id="question-2" class="input-field col s12">
-                    <select>
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                        <option value="5">Option 5</option>
-                    </select>
-                    <label>Question 2</label>
-                </div>
+                    <div id="question-2" class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                        </select>
+                        <label>Question 2</label>
+                    </div>
 
-                <div id="question-3" class="input-field col s12">
-                    <select>
-                        <option value="" disabled selected>Choose your option</option>
-                        <option value="1">Option 1</option>
-                        <option value="2">Option 2</option>
-                        <option value="3">Option 3</option>
-                        <option value="4">Option 4</option>
-                        <option value="5">Option 5</option>
-                    </select>
-                    <label>Question 3</label>
+                    <div id="question-3" class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                            <option value="4">Option 4</option>
+                            <option value="5">Option 5</option>
+                        </select>
+                        <label>Question 3</label>
+                    </div>
                 </div>
 
                 <a id="form-submit" class="waves-effect waves-light btn">Submit</a>
@@ -95,58 +97,114 @@
 
     <!-- Init JS Components (Select) from Materialize, listener for form post  -->
     <script type="text/javascript">
+
+        var questions = ["I like coffee", "I like sushi", "I hate spiders"];
+
         $(document).ready(function () {
-            $("select").formSelect();
+            loadQuestions()
         });
 
         $("#form-submit").on("click", function (event) {
-            var questionCount = 3
             event.preventDefault();
-            var scoresArray = []
 
-            for (i = 1; i <= questionCount; i++) {
-                questionValue = $("#question-" + i + " option:selected").val();
-                scoresArray.push(questionValue)
+            // Will save selected options
+            var optionsArray = []
+
+            for (var i = 1; i <= questions.length; i++) {
+                // Only saves first character -- 1-5, or 'C' if not selected
+                $("#question-1 input.select-dropdown").val()[0]
+                questionValue = $("#question-" + i + " input.select-dropdown").val()[0];
+                optionsArray.push(questionValue);
             }
 
-            var newFriend = {
-                name: $("#name").val().trim(),
-                photo: $("#photo").val().trim(),
-                scores: scoresArray
-            };
+            // Get name and link from form
+            var nameSubmitted = $("#name").val().trim();
+            var photoLinkSubmitted = $("#photo").val().trim();
+
 
             // Validate name is supplied
-            if (newFriend.name === "") {
+            if (nameSubmitted === "") {
                 alert("Please enter a name");
             }
 
             // Validate photo URL is supplied
-            else if (newFriend.photo === "") {
+            else if (photoLinkSubmitted === "") {
                 alert("Please enter a photo URL")
             }
 
             // Validate all questions were answered
-            else if (newFriend.scores.indexOf("") != -1) {
+            else if (optionsArray.indexOf("C") != -1) {
                 alert("Please answer all the questions")
             }
 
+            // If data is valid, convert answers to integers, and post all data
             else {
+
+                var scoresArray = []
+                // Parse string integers
+                for (var j in optionsArray) {
+                    scoresArray.push(parseInt(optionsArray[j]));
+                }
+
+                // create obj for new friend
+                var newFriend = {
+                    name: nameSubmitted,
+                    photo: photoLinkSubmitted,
+                    scores: scoresArray
+                };
+
                 console.log(newFriend);
 
-                // Post user
+                // Post new user
                 $.post("/api/friends", newFriend, function (data) {
                     if (data) {
                         alert("Yay! Your form was submitted!");
                     }
-                    
+
                     // Clear form
                     $("#name").val("");
                     $("#photo").val("");
-                    $("select").val("");
-                    $("select").formSelect();
+                    loadQuestions();
+                    // $("select").val("");
+                    // $("select").formSelect();
                 });
             }
         });
+
+
+
+        function loadQuestions() {
+
+            var formDiv = $("#survey-questions");
+
+            formDiv.empty();
+
+            for (var i in questions) {
+                console.log(i)
+                var numId = +1 + +i;
+                var runningId = "question-" + numId;
+                var questionDiv = $("<div>").addClass("input-field col s12").attr("id", runningId);
+                var selectTag = $("<select>");
+                var option0 = $("<option>").text("Choose your option")
+                option0.attr("disabled", true)
+                option0.attr("selected", "selected")
+                selectTag.append(option0);
+                var defaultOptions = ["1 (Strongly Disagree)", "2", "3", "4", "5 (Strongly Agree)"]
+
+                for (var j in defaultOptions) {
+                    var option = $("<option>").text(defaultOptions[j]).val(j);
+                    selectTag.append(option);
+                }
+
+                questionDiv.append(selectTag);
+                var label = $("<label>").text(questions[i]);
+                questionDiv.append(label);
+                formDiv.append(questionDiv);
+            }
+
+            $("select").formSelect();
+        }
+
     </script>
 
 </body>
