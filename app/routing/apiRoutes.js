@@ -28,14 +28,24 @@ module.exports = function (app) {
 
 }
 
-// function calculateMatch(newFriend) {
-//     for (i = 0; i < friendData.length; i++) {
+function calculateMatch(newFriend) {
+    var matches = []
+    for (i = 0; i < friendData.length; i++) {
+        matches.push(
+            {
+                name: friendData[i].name,
+                score: compareScores(newFriend.scores, friendData[i].scores)
+            }
+        );
+    }
+    return matches;
+}
 
-//     }
-// }
+function compareScores(newFriendScores, existingFriendScores) {
+    var scoreDiff = 0;
+    newFriendScores.map(function (currentValue, index) {
+        scoreDiff += Math.abs(currentValue - existingFriendScores[index])
+    })
+    return scoreDiff;
+}
 
-// function getDifference(array1, array2) {
-//     array1.map(function (currentValue, index) {
-//         return Math.abs(currentValue - array2[index])
-//     })
-// }
