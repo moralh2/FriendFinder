@@ -42,6 +42,11 @@
                     <label for="name">Name</label>
                 </div>
 
+                <div class="input-field col s12">
+                    <input id="photo" type="text" class="validate">
+                    <label for="photo">Photo URL</label>
+                </div>
+
                 <div id="question-1" class="input-field col s12">
                     <select>
                         <option value="" disabled selected>Choose your option</option>
@@ -106,22 +111,39 @@
 
             var newFriend = {
                 name: $("#name").val().trim(),
-                photo: "some-url",
+                photo: $("#photo").val().trim(),
                 scores: scoresArray
             };
 
-            console.log(newFriend);
+            // Validate name is supplied
+            if (newFriend.name === "") {
+                alert("Please enter a name");
+            }
 
-            $.post("/api/friends", newFriend, function (data) {
-                if (data) {
-                    alert("Yay! Your form was submitted!");
-                }
+            // Validate photo URL is supplied
+            else if (newFriend.photo === "") {
+                alert("Please enter a photo URL")
+            }
 
-                $("#name").val("");
-                $("select").val("");
-                $("select").formSelect();
-            });
+            // Validate all questions were answered
+            else if (newFriend.scores.indexOf("") != -1) {
+                alert("Please answer all the questions")
+            }
 
+            else {
+                console.log(newFriend);
+
+                $.post("/api/friends", newFriend, function (data) {
+                    if (data) {
+                        alert("Yay! Your form was submitted!");
+                    }
+
+                    $("#name").val("");
+                    $("#photo").val("");
+                    $("select").val("");
+                    $("select").formSelect();
+                });
+            }
         });
     </script>
 
