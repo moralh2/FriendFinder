@@ -10,6 +10,7 @@ var PORT = process.env.PORT || 8080;
 // Data parsing
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
+app.use(express.static(__dirname + '/app/public'));
 
 // Router
 // The order matters bc of the catch-all
