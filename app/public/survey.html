@@ -63,6 +63,17 @@
             </form>
         </div>
 
+        <!-- Modal for Friend Match -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h4>We've found a match!</h4>
+                <p id="modal-body">A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-light btn">Cool!</a>
+            </div>
+        </div>
+
     </div>
 
     <!-- Compiled and minified JavaScript -->
@@ -72,7 +83,7 @@
     <script type="text/javascript">
 
         var questions = [
-            "I need coffee in my life", "I am definitely a morning person", 
+            "I need coffee in my life", "I am definitely a morning person",
             "I really like scary movies", "I prefer beer to wine",
             "I like dogs over cats", "I enjoy hiking",
             "I watch too much Netflix", "I can't wait for the final season of Game Thrones",
@@ -80,7 +91,9 @@
         ];
 
         $(document).ready(function () {
-            loadQuestions()
+            loadQuestions();
+            $('.modal').modal();
+
         });
 
         $("#form-submit").on("click", function (event) {
