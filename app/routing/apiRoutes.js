@@ -28,7 +28,7 @@ function calculateMatch(newFriend) {
             {
                 name: friendData[i].name,
                 score: compareScores(newFriend.scores, friendData[i].scores),
-                photo: friendData[i].name,
+                photo: friendData[i].photo,
             }
         );
     }

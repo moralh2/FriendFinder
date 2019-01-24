@@ -160,10 +160,9 @@
                 // Post new user
                 $.post("/api/friends", newFriend, function (data) {
                     if (data) {
-
-                        var modalBody = $("#modal-body");
-                        modalBody.empty();
-                        modalBody.append(JSON.stringify(data));
+                        // Function will load data name and link w/ jQuery to modal
+                        loadMatch(data);
+                        console.log(JSON.stringify(data))
                         $('#modal').modal('open');
                     }
 
@@ -207,11 +206,12 @@
             $("select").formSelect();
         }
 
+        // Set name img source within modal
         function loadMatch(matchedFriend) {
             var modalName = $("#modal-match-name") ;
             var modalPhoto = $("#modal-match-image");
-            modalName.empty();
-            modalPhoto.empty();
+            modalName.text(matchedFriend.name);
+            modalPhoto.attr("src", matchedFriend.photo);
         }
 
     </script>
