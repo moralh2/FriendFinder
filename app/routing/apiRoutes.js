@@ -34,12 +34,7 @@ function calculateMatch(newFriend) {
 
     // Look at score attribute and sort, asc
     matches.sort(function(a,b){
-        if(a.score == b.score)
-            return 0;
-        if(a.score < b.score)
-            return -1;
-        if(a.score > b.score)
-            return 1;
+        return (a.score - b.score)
     });
 
     // Return the closest match
