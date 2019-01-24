@@ -74,16 +74,16 @@
             <div class="modal-content">
                 <div class="row valign-wrapper">
                     <div class="col s4">
-                        <img class="materialboxed responsive-img" src="https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png">
+                        <img id="modal-match-image" class="materialboxed responsive-img" src="https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png">
                     </div>
                     <div class="col s8">
                         <h5>You have a match:</h5>
-                        <h4 id="modal-match">Bender Bending Rodríguez!</h4>
+                        <h4 id="modal-match-name">Bender Bending Rodríguez!</h4>
                     </div>
                 </div>
             </div>
             <div class="modal-footer teal lighten-2">
-                <a class="modal-close btn-floating waves-effect waves-light blue right"><i class="material-icons">thumb_up</i></a>
+                <a class="modal-close waves-effect waves-purple btn-flat right">Close</a>
             </div>
         </div>
 
@@ -160,6 +160,7 @@
                 // Post new user
                 $.post("/api/friends", newFriend, function (data) {
                     if (data) {
+
                         var modalBody = $("#modal-body");
                         modalBody.empty();
                         modalBody.append(JSON.stringify(data));
@@ -206,7 +207,12 @@
             $("select").formSelect();
         }
 
-        // function loadMatch
+        function loadMatch(matchedFriend) {
+            var modalName = $("#modal-match-name") ;
+            var modalPhoto = $("#modal-match-image");
+            modalName.empty();
+            modalPhoto.empty();
+        }
 
     </script>
 
