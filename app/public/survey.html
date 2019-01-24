@@ -147,7 +147,10 @@
                 // Post new user
                 $.post("/api/friends", newFriend, function (data) {
                     if (data) {
-                        alert(JSON.stringify(data));
+                        var modalBody = $("#modal-body");
+                        modalBody.empty();
+                        modalBody.append(JSON.stringify(data));
+                        $('#modal').modal('open');
                     }
 
                     // Clear form
