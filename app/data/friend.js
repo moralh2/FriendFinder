@@ -2,7 +2,7 @@
 var friends = [
     {
         name:"Philip J. Fry",
-        photo:"https://en.wikipedia.org/wiki/File:Philip_Fry.png",
+        photo:"https://upload.wikimedia.org/wikipedia/en/2/28/Philip_Fry.png",
         scores:[5,5,5,5,5,5,5,5,5,4]
     },
     {

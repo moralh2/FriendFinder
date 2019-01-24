@@ -20,6 +20,12 @@
             font-size: 1.1rem !important;
             font-style: italic;
         }
+        img {
+            /* max-height: 300px;
+            max-width: 300px; */
+            height: auto;
+            width: auto;
+        }
     </style>
 </head>
 
@@ -64,13 +70,20 @@
         </div>
 
         <!-- Modal for Friend Match -->
-        <div id="modal" class="modal">
+        <div id="modal" class="modal teal lighten-4">
             <div class="modal-content">
-                <h4>We've found a match!</h4>
-                <p id="modal-body">A bunch of text</p>
+                <div class="row valign-wrapper">
+                    <div class="col s4">
+                        <img class="materialboxed responsive-img" src="https://upload.wikimedia.org/wikipedia/en/a/a6/Bender_Rodriguez.png">
+                    </div>
+                    <div class="col s8">
+                        <h5>You have a match:</h5>
+                        <h4 id="modal-match">Bender Bending Rodríguez!</h4>
+                    </div>
+                </div>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-light btn">Cool!</a>
+            <div class="modal-footer teal lighten-2">
+                <a class="modal-close btn-floating waves-effect waves-light blue right"><i class="material-icons">thumb_up</i></a>
             </div>
         </div>
 
@@ -93,7 +106,7 @@
         $(document).ready(function () {
             loadQuestions();
             $('.modal').modal();
-
+            $('.materialboxed').materialbox();
         });
 
         $("#form-submit").on("click", function (event) {
@@ -192,6 +205,8 @@
             // Initialize the Materialize selects
             $("select").formSelect();
         }
+
+        // function loadMatch
 
     </script>
 
