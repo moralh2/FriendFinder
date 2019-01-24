@@ -27,7 +27,8 @@ function calculateMatch(newFriend) {
         matches.push(
             {
                 name: friendData[i].name,
-                score: compareScores(newFriend.scores, friendData[i].scores)
+                score: compareScores(newFriend.scores, friendData[i].scores),
+                photo: friendData[i].name,
             }
         );
     }
