@@ -15,7 +15,7 @@ The back-end of the app uses some NPM packages:
 ```
 app/
 ├── data/
-|   ├── friend.js       - stores the the profiles--user info and their answers--in an array
+|   ├── friend.js       - stores the the all users' info, answers in an array
 ├── public/
 |   ├── css/
 |   |   ├── survey.css  - some styling for the label section of the questions
@@ -25,7 +25,7 @@ app/
 |   ├── survey.html     - view with 10-question form; modal displays match after form submission
 ├── routing/
 |   ├── apiRoutes.js    - GET and POST requests to friends api
-|   ├── htmlRoutes.js   - GET reques for survey and home views
+|   ├── htmlRoutes.js   - GET request for survey and home views
 ```
 - `./app/routing/apiRoutes.js` - contains functions that compare the answers of two users, and then filters for a match based on the results
 - `./server,js` - uses `express` npm package to create and configure the app server
